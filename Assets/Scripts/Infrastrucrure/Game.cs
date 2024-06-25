@@ -1,12 +1,20 @@
-﻿namespace Screpts.Infrastructure
+﻿using UnityEngine;
+using VContainer.Unity;
+
+namespace Screpts.Infrastructure
 {
-    public class Game
+    public class Game : IStartable
     {
         public GameStateMachine StateMachine;
 
-        public Game(ICoroutineRunner coroutineRunner)
+        public Game(GameBootstrapper gameBootstrapper)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner));
+            StateMachine = new GameStateMachine(new SceneLoader(gameBootstrapper));
+        }
+
+        public void Start()
+        {
+            StateMachine.Enter<BootstrapState>();
         }
     }
 }
