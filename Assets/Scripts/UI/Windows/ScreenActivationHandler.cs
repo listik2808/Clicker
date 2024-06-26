@@ -1,4 +1,4 @@
-using Screpts.Ui;
+using Screpts.Ui.Windows;
 using Scripts.Ui.ButtonUI;
 using System.Collections.Generic;
 using UnityEngine;
