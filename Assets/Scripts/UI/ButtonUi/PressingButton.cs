@@ -15,7 +15,6 @@ namespace Scripts.Ui.ButtonUI
 
         public event Action<PressingButton> OnClickButtonScreen;
         public event Action<bool> OnChangetColor;
-        public event Action OnCklickPanel;
 
         private void OnEnable()
         {
@@ -44,6 +43,5 @@ namespace Scripts.Ui.ButtonUI
             OnClickButtonScreen?.Invoke(this);
             OnChangetColor?.Invoke(_isclick);
         }
-
     }
 }

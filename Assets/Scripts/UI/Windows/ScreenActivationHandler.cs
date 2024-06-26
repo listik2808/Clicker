@@ -70,7 +70,7 @@ namespace Scripts.Ui.Windows
                 else
                 {
                     DefaltColorButton(pressingButton);
-                    item.gameObject.SetActive(false);//возможно следует тут сделать евет о том что бы сам экран внутри себя вызвал метод о пошаговом отключение окон
+                    item.gameObject.SetActive(false);
                 }
             }
         }
