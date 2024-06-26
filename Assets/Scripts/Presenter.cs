@@ -1,13 +1,15 @@
 using Screpts.Ui;
 using Scripts.Ui.ButtonUI;
 using UnityEngine;
+using VContainer.Unity;
 
 namespace Screpts
 {
-    public class Presenter : MonoBehaviour
+    public class Presenter : IStartable
     {
         private ClickPanel _clickPanel;
         private CustomPool _customPool;
+
         public Presenter(ClickPanel clickPanel,CustomPool customPool)
         {
             _clickPanel = clickPanel;
@@ -16,21 +18,19 @@ namespace Screpts
 
         private void OnDisable()
         {
-            _clickPanel.OnClickPanel -= GetClic;
+            _clickPanel.OnClickPanel -= StartClic;
         }
 
-        private void Start()
+        public void Start()
         {
-            _clickPanel.OnClickPanel += GetClic;
+            _clickPanel.OnClickPanel += StartClic;
             _customPool.Spawn();
         }
 
-        private void GetClic()
+        private void StartClic()
         {
             _customPool.Activate();
 
-
         }
-
     }
 }

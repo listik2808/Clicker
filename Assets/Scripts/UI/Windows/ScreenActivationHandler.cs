@@ -26,7 +26,7 @@ namespace Scripts.Ui.Windows
             }
         }
 
-        private void Awake()
+        private void Start()
         {
             ActivateDefaltScreen(1);
             ActivateColorBattonDefalte(1);

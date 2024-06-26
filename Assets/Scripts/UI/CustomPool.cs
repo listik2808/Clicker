@@ -1,5 +1,4 @@
-﻿using Scripts.Ui.ButtonUI;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -32,7 +31,6 @@ namespace Screpts.Ui
                 item.gameObject.SetActive(false);
                 _pool.Add(item);
             }
-            item.transform.localPosition = Vector3.zero;
             item.gameObject.SetActive(true);
         }
 
