@@ -1,8 +1,8 @@
-using Scripts.Ui.ButtonUI;
+using Scripts.UI.ButtonUI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Screpts.Ui
+namespace Screpts.UI
 {
     public class ColorIcon : MonoBehaviour
     {

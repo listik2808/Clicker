@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Screpts.Ui
+namespace Screpts.UI
 {
     public class CustomPool : MonoBehaviour
     {
@@ -12,26 +12,36 @@ namespace Screpts.Ui
         [SerializeField] private Transform _container;
         private List<Model> _pool = new List<Model>();
 
-        public void Spawn()
+        public void Spawn(int powerClick)
         {
             for (int i = 0; i < _numberObjectsStart; i++)
             {
                 Model obj = Create(_prefab, _container);
+                obj.SetPowerClick(powerClick);
                 obj.gameObject.SetActive(false);
                 _pool.Add(obj);
             }
         }
 
-        public void Activate()
+        public void Activate(int powerClick)
         {
             Model item = _pool.FirstOrDefault(x => !x.isActiveAndEnabled);
             if(item == null)
             {
                 item = Create(_prefab, _container);
+                item.SetPowerClick(powerClick);
                 item.gameObject.SetActive(false);
                 _pool.Add(item);
             }
             item.gameObject.SetActive(true);
+        }
+
+        public void UpdateClickPower(int powerClic)
+        {
+            foreach (Model obj in _pool)
+            {
+                obj.SetPowerClick(powerClic);
+            }
         }
 
         private Model Create(Model prefab,Transform container)

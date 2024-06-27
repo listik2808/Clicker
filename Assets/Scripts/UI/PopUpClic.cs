@@ -2,7 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace Screpts.Ui
+namespace Screpts.UI
 {
     public class PopUpClic : Model
     {
@@ -12,6 +12,7 @@ namespace Screpts.Ui
 
         private void OnEnable()
         {
+            _value.text = "+" + _powerClick.ToString();
             _transform.anchoredPosition = Vector3.zero;
             _value.DOFade(1,0.1f);
             _sequence = DOTween.Sequence();

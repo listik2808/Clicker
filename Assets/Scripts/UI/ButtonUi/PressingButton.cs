@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.Ui.ButtonUI
+namespace Scripts.UI.ButtonUI
 {
     public class PressingButton : MonoBehaviour
     {

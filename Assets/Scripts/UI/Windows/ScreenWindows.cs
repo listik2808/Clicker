@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Screpts.Ui.Windows
+namespace Screpts.UI.Windows
 {
     public abstract class ScreenWindows : MonoBehaviour
     {

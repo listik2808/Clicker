@@ -1,9 +1,9 @@
-using Screpts.Ui.Windows;
-using Scripts.Ui.ButtonUI;
+using Screpts.UI.Windows;
+using Scripts.UI.ButtonUI;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scripts.Ui.Windows
+namespace Scripts.UI.Windows
 {
     public class ScreenActivationHandler : MonoBehaviour
     {

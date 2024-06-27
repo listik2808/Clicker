@@ -1,35 +1,89 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgresBar : MonoBehaviour
+namespace Screpts.UI
 {
-    [SerializeField] private Slider _slider;
-    [SerializeField] private TMP_Text _levelText;
-    [Range(1,30)]
-    [SerializeField] private float _maxValue = 10;
-    private float _currentValue = 0;
-    private int _level = 0;
-
-    public void RenderinBar()
+    public class ProgresBar : MonoBehaviour
     {
-        _slider.value = _maxValue / _currentValue;
-    }
+        [SerializeField] private Slider _slider;
+        [SerializeField] private TMP_Text _levelText;
+        [Range(1, 30)]
+        [SerializeField] private int _maxValueClick = 10;
+        [SerializeField] private TMP_Text _textCountClick;
+        private int _countClick;
+        private int _currentValueClick = 0;
+        private int _level = 0;
 
-    private void UpLevel()
-    {
-        _level++;
-    }
+        private void Start()
+        {
+            RenderinBar();
+            ShowLevel();
+            ShowTextCountClick();
+            SetCountClick();
+        }
 
-    private void ShowLevel()
-    {
-        _levelText.text = _level.ToString();
-    }
+        public bool TryCountClick(int value)
+        {
+            if (value > 0)
+            {
+                TakeClick(value);
+                return true;
+            }
+            else 
+            {
+                return false; 
+            }
+        }
 
-    private void SetMaxValue()
-    {
-        _maxValue *= 2;
+        private void RenderinBar()
+        {
+            _slider.value = (float)_currentValueClick / (float)_maxValueClick;
+        }
+
+        private void TakeClick(int count)
+        {
+            _currentValueClick += count;
+            _countClick -= count;
+            if (PossibleRaiseLevel())
+                UpLevel();
+            RenderinBar();
+            ShowTextCountClick();
+        }
+
+        private bool PossibleRaiseLevel()
+        {
+            if (_currentValueClick == _maxValueClick)
+            {
+                _currentValueClick = 0;
+                _countClick = 0;
+                return true;
+            }
+
+            return false;
+        }
+
+        private void ShowTextCountClick()
+        {
+            _textCountClick.text = _countClick.ToString() + "Count Click";
+        }
+
+        private void UpLevel()
+        {
+            _level++;
+            _maxValueClick *= 2;
+            SetCountClick();
+            ShowLevel();
+        }
+
+        private void ShowLevel()
+        {
+            _levelText.text = "Level " + _level.ToString();
+        }
+
+        private void SetCountClick()
+        {
+            _countClick = _maxValueClick;
+        }
     }
 }
