@@ -7,6 +7,7 @@ namespace Screpts.UI
 {
     public class CounterClick : MonoBehaviour
     {
+        public const string CountClickSave = "CountClicksSave";
         [SerializeField] private TMP_Text _counterText;
         private List<string> _chars = new List<string>() { "", "K", "M", "B", "T", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n" };
         private float _counter;
@@ -15,9 +16,24 @@ namespace Screpts.UI
 
         public float Counter => _counter;
 
+        private void Start ()
+        {
+            _counter = SaveProgress.LoadInt(CountClickSave);
+            ShortNumber(_counter);
+            Show();
+        }
+
         public void AddClick(int value)
         {
             _counter += value;
+            ShortNumber(_counter);
+            Show();
+            SaveProgress.SaveProgressInt(CountClickSave, (int)_counter);
+        }
+
+        public void Pay(int value)
+        {
+            _counter -= value;
             ShortNumber(_counter);
             Show();
         }

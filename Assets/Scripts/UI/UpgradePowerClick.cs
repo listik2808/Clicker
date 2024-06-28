@@ -8,10 +8,12 @@ namespace Screpts.UI
 {
     public class UpgradePowerClick : MonoBehaviour
     {
+        public const string PowerClickKay = "powerClicKay";
         [SerializeField] private Button _buttonUpPowerClick;
         [SerializeField] private TMP_Text _priceUpgrade;
         [SerializeField] private TMP_Text _currentPowerClick;
         [SerializeField] private TMP_Text _nextPowerClick;
+        [SerializeField] private TMP_Text _counterClickText;
         CounterClick _counterClick;
         private int _currentPower = 1;
         private int _price = 10;
@@ -23,7 +25,6 @@ namespace Screpts.UI
         private void OnEnable()
         {
             _buttonUpPowerClick.onClick.AddListener(TryPayUpdgade);
-            InteracteibleButtonUpgrade();
             Show();
         }
 
@@ -38,16 +39,37 @@ namespace Screpts.UI
             _counterClick = counterClick;
         }
 
+        private void Start()
+        {
+            _currentPower = SaveProgress.LoadInt(PowerClickKay);
+            if (_currentPower == 0)
+            {
+                _currentPower = 1;
+            }
+        }
+
         public void TryPayUpdgade()
         {
             if (_counterClick.Counter >= _price)
+            {
+                _counterClick.Pay(_price);
+                _counterClickText.text = _counterClick.Counter.ToString();
                 UpPowerClick();
+            }
+        }
+
+        public void UpPower(int power)
+        {
+            _currentPower += power;
+            SaveProgress.SaveProgressInt(PowerClickKay, _currentPower);
+            OnClickButtonUpPuwer?.Invoke();
         }
 
         private void UpPowerClick()
         {
             _price *= 2;
             _currentPower++;
+            SaveProgress.SaveProgressInt(PowerClickKay, _currentPower);
             OnClickButtonUpPuwer?.Invoke();
             Show();
         }
@@ -57,14 +79,7 @@ namespace Screpts.UI
             _currentPowerClick.text = "Current power "+ _currentPower.ToString();
             _nextPowerClick.text = "Next power " + (_currentPower + 1).ToString();
             _priceUpgrade.text = "price " + _price.ToString();
-        }
-
-        private void InteracteibleButtonUpgrade()
-        {
-            if (_counterClick.Counter >= _price)
-                _buttonUpPowerClick.interactable = true;
-            else
-                _buttonUpPowerClick.interactable = false;
+            _counterClickText.text = _counterClick.Counter.ToString() + "Count Click";
         }
     }
 }

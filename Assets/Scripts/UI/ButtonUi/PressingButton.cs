@@ -23,7 +23,7 @@ namespace Scripts.UI.ButtonUI
 
         private void OnDisable()
         {
-            _button?.onClick.RemoveListener(PlayClick);
+            _button.onClick.RemoveListener(PlayClick);
         }
 
         public void DefaultColorIcon()
