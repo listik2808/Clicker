@@ -43,6 +43,7 @@ namespace Screpts
 
         private void StartClic()
         {
+            Debug.Log(_upgradePowerClick.CurrentPower + "(9)");
             bool resulr = _progresBar.TryCountClick(_upgradePowerClick.CurrentPower);
             if (resulr)
             {

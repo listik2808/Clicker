@@ -28,7 +28,7 @@ namespace Screpts.UI
             if(_maxValueClick == 0)
                 _maxValueClick = 10;
             _countClick = SaveProgress.LoadInt(KayRemainingClicks);
-            if(_countClick == 0)
+            if (_countClick == 0)
             {
                 SetCountClick();
             }
@@ -77,6 +77,7 @@ namespace Screpts.UI
             SaveProgress.SaveProgressInt(KayLevel, _level);
             SaveProgress.SaveProgressInt(KayMaxCount, _maxValueClick);
             SaveProgress.SaveProgressInt(KayRemainingClicks, _countClick);
+            SaveProgress.SaveProgressInt(KayCountClick, _currentValueClick);
         }
 
         private bool PossibleRaiseLevel()

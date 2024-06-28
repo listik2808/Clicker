@@ -1,5 +1,6 @@
 ﻿using Screpts.UI.PopUpScreen;
 using Scripts.UI.ButtonUI;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,8 @@ namespace Screpts.UI.Windows
             {
                 button.OnClickproduct -= OpenPopUpProduct;
             }
+            _currentProduct.Diactivate();
+            _currentProduct.gameObject.SetActive(false);
         }
 
         private void OpenPopUpProduct(int index)

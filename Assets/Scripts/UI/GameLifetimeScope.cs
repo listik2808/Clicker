@@ -23,7 +23,6 @@ namespace Screpts.UI
             builder.RegisterComponentInHierarchy<CustomPool>();
             builder.RegisterComponentInHierarchy<ClickPanel>();
             builder.RegisterComponentInHierarchy<ProgresBar>();
-            //builder.Register<Observer>(Lifetime.Scoped);
             builder.Register<Presenter>(Lifetime.Singleton);
             builder.RegisterEntryPoint<Presenter>();
         }

@@ -8,6 +8,8 @@ namespace Screpts.UI
 {
     public class UpgradePowerClick : MonoBehaviour
     {
+        public const string LevelPrice = "LevelPrice";
+        public const string Price = "Price";
         public const string PowerClickKay = "powerClicKay";
         [SerializeField] private Button _buttonUpPowerClick;
         [SerializeField] private TMP_Text _priceUpgrade;
@@ -17,6 +19,7 @@ namespace Screpts.UI
         CounterClick _counterClick;
         private int _currentPower = 1;
         private int _price = 10;
+        private int _level = 1;
 
         public int CurrentPower => _currentPower;
 
@@ -37,15 +40,16 @@ namespace Screpts.UI
         public void Construct(CounterClick counterClick)
         {
             _counterClick = counterClick;
-        }
-
-        private void Start()
-        {
+            _level = SaveProgress.LoadInt(LevelPrice);
+            if(_level == 0)
+                _level = 1;
+            _price = SaveProgress.LoadInt(Price);
+            if (_price == 0)
+                _price = 10;
             _currentPower = SaveProgress.LoadInt(PowerClickKay);
             if (_currentPower == 0)
-            {
                 _currentPower = 1;
-            }
+            Show();
         }
 
         public void TryPayUpdgade()
@@ -70,6 +74,8 @@ namespace Screpts.UI
             _price *= 2;
             _currentPower++;
             SaveProgress.SaveProgressInt(PowerClickKay, _currentPower);
+            SaveProgress.SaveProgressInt(LevelPrice, _level);
+            SaveProgress.SaveProgressInt(Price, _price);
             OnClickButtonUpPuwer?.Invoke();
             Show();
         }

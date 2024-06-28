@@ -18,11 +18,13 @@ namespace Screpts.UI.PopUpScreen
         private CounterClick _counterClick;
         private UpgradePowerClick _upgradePowerClick;
         private bool _isPay = false;
+        private bool _isOpen = false;
 
         public int Index => _index;
 
         private void OnEnable()
         {
+            _isOpen = true;
             _exit.onClick.AddListener(Exit);
             _payProduct.onClick.AddListener(TryPay);
         }
@@ -56,6 +58,11 @@ namespace Screpts.UI.PopUpScreen
         {
             _counterClick = counterClick;
             _upgradePowerClick = upgradePowerClick;
+        }
+
+        public void Diactivate()
+        {
+            _isPay = false;
         }
 
         private void Exit()

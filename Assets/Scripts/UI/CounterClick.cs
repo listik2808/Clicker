@@ -16,7 +16,7 @@ namespace Screpts.UI
 
         public float Counter => _counter;
 
-        private void Start ()
+        private void Start()
         {
             _counter = SaveProgress.LoadInt(CountClickSave);
             ShortNumber(_counter);
